@@ -1,7 +1,7 @@
 import torch
 from torch.optim.optimizer import Optimizer, required
 
-class MySGD(Optimizer):
+class AutoSGD(Optimizer):
     
     def __init__(self, params, lr=required, momentum=0, dampening=0,
                  weight_decay=0, nesterov=False):
@@ -17,7 +17,7 @@ class MySGD(Optimizer):
         super(MySGD, self).__init__(params, defaults)
 
     def __setstate__(self, state):
-        super(MySGD, self).__setstate__(state)
+        super(AutoSGD, self).__setstate__(state)
         for group in self.param_groups:
             group.setdefault('nesterov', False)
 
