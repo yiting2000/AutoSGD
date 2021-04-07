@@ -56,13 +56,16 @@ class AutoSGD(Optimizer):
                         d_p = d_p.add(buf, alpha=momentum)
                     else:
                         d_p = buf
-
+                        
+                   
+                # get the norm for the next two steps
                 step_size = group['lr']
                 internal1 =  p.add_(d_p, alpha=-group['lr'])
                 internal2 =  p.add_(d_p, alpha=-group['lr']*2)
                 g1 = internal1.grad
                 g2 = internal2.grad
-                                        
+                                       
+                # use the norm to determine the learning rate of the next step 
                 if torch.norm(g1)/torch.norm(g2) < 1/2:  #torch.max(g1[0],g2[0]) == g1[0]:
                     step_size = step_size
                 else:
