@@ -1,3 +1,9 @@
+
+'''Implement AutoSGD, significant code segments modified from pytorch.optim source file, 
+https://github.com/pytorch/pytorch/blob/master/torch/optim/sgd.py
+'''
+
+
 import torch
 from torch.optim.optimizer import Optimizer, required
 
